@@ -48,7 +48,7 @@ connectDB();
 //==============================================
 const {readEnv} = require('./lib/database')
 const config = await readEnv();
-const prefix = `.`
+const prefix = config.PREFIX
 //==============================================
         
 console.log("Infinity wa bot connecting 🧬...");
