@@ -1,6 +1,8 @@
 const {readEnv} = require('../lib/database')
 const {cmd , commands} = require('../command')
-const axios = require('axios')
+const axios = require('axios');
+const FormData = require('form-data');
+const fs = require('fs');
 
 cmd({
     pattern: "test",
@@ -13,27 +15,32 @@ try{
 
 const config = await readEnv()
 if(config.BLOCK_JID.includes(from)) return
-if(!q) return reply("*_Please give me a text._*")
+
+
 
 // Define your API key and endpoint
-const apiKey = 'vk-rQFpHCGbR6QLyrqdnaR32WmDIoC8vlDMYoUbXFNWYFZE9'; // Replace with your actual API key
-const apiUrl = 'https://api.vyro.ai/v2/image/generations'; // Replace with the actual API URL
+const apiKey = 'YOUR_API_KEY';  // Replace with your actual API key
+const apiUrl = 'https://api.imagine.com/v1/generate-image'; // Replace with actual API URL
+
+// Create a new FormData instance to send the data as multipart/form-data
+const form = new FormData();
 
 // Define the parameters for the image generation
 const prompt = 'A beautiful landscape with mountains and a river at sunset'; // Example prompt
 
-// Create the request payload
-const requestData = {
-    prompt: prompt,
-    n: 1, // Number of images to generate
-    size: '1024x1024', // Image size (adjust as needed)
-};
+// Append the fields to the FormData object
+form.append('prompt', prompt);
+form.append('n', 1); // Number of images to generate
+form.append('size', '1024x1024'); // Image size (adjust as needed)
 
-// Make the API request to Imagine API
-axios.post(apiUrl, requestData, {
+// Optionally, if you need to send a file (for example, an image file), you can append it like this:
+// form.append('file', fs.createReadStream('/path/to/your/image.png'));
+
+// Make the API request to the Imagine API with the correct headers
+axios.post(apiUrl, form, {
     headers: {
+        ...form.getHeaders(),
         'Authorization': `Bearer ${apiKey}`, // Add your API key to the authorization header
-        'Content-Type': 'application/json',
     }
 })
 .then(response => {
@@ -44,6 +51,7 @@ axios.post(apiUrl, requestData, {
 .catch(error => {
     console.error('Error generating image:', error.response ? error.response.data : error.message);
 });
+
 
 
 }catch(e){
