@@ -19,8 +19,8 @@ if(config.BLOCK_JID.includes(from)) return
 
 
 // Define your API key and endpoint
-const apiKey = 'YOUR_API_KEY';  // Replace with your actual API key
-const apiUrl = 'https://api.imagine.com/v1/generate-image'; // Replace with actual API URL
+const apiKey = 'vk-rQFpHCGbR6QLyrqdnaR32WmDIoC8vlDMYoUbXFNWYFZE9';  // Replace with your actual API key
+const apiUrl = 'https://api.vyro.ai/v2/image/generations'; // Replace with actual API URL
 
 // Create a new FormData instance to send the data as multipart/form-data
 const form = new FormData();
