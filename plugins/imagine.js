@@ -47,7 +47,7 @@ axios.post(apiUrl, form, {
 .then(response => {
     // Handle the response and get the generated image URL
     const imageUrl = response.data.image_url; // Assuming the API response contains an 'image_url'
-    console.log('Generated Image URL:', imageUrl);
+    console.log(response);
 })
 .catch(error => {
     console.error('Error generating image:', error.response ? error.response.data : error.message);
