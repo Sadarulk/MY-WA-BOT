@@ -16,8 +16,6 @@ try{
 const config = await readEnv()
 if(config.BLOCK_JID.includes(from)) return
 
-
-// Define your API key and endpoint
 const apiKey = 'vk-rQFpHCGbR6QLyrqdnaR32WmDIoC8vlDMYoUbXFNWYFZE9';  // Replace with your actual API key
 const apiUrl = 'https://api.vyro.ai/v2/image/generations'; // Replace with actual API URL
 
@@ -38,7 +36,7 @@ axios.post(apiUrl, form, {
     }
 })
 .then(response => {
-    await conn.sendMessage(from, {image : response.data},{quoted:mek})
+    conn.sendMessage(from, {image : response.data},{quoted:mek})
 })
 .catch(error => {
     console.error('Error generating image:', error.response ? error.response.data : error.message);
