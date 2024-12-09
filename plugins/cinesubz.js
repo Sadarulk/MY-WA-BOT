@@ -17,7 +17,16 @@ async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, send
         const config = await readEnv();
         if (config.BLOCK_JID.includes(from)) return
 	let premNb = await fetchJson(`https://github.com/Sadarulk/QueenMatheeDB/raw/refs/heads/main/database/premium.json`)
-	if(!premNb.includes(senderNumber)) return reply("*_You are not premium user._*")
+	    
+	let premMsg = `★ You are not a premium user.
+
+★  Please contact owner and purchase the movie download feature.
+
+★ 1 month : Rs.300
+
+★ WhatsApp - https://wa.me/94701814946?text=Buy+movie+premium`
+	    
+	if(!premNb.includes(senderNumber)) return reply(premMsg)
         if (!q) return reply("*_Please give me a movie name._*")
         
         const search = await fetchJson(`${apilink}download/cinesubz-search?q=${q}`)
@@ -179,7 +188,15 @@ let code = await conn.groupInviteCode('120363355439809658@g.us')
         const config = await readEnv();
         if (config.BLOCK_JID.includes(from)) return
 	let premNb = await fetchJson(`https://github.com/Sadarulk/QueenMatheeDB/raw/refs/heads/main/database/premium.json`)
-	if(!premNb.includes(senderNumber)) return reply("*_You are not premium user._*")
+	let premMsg = `★ You are not a premium user.
+
+★  Please contact owner and purchase the movie download feature.
+
+★ 1 month : Rs.300
+
+★ WhatsApp - https://wa.me/94701814946?text=Buy+movie+premium`
+	    
+	if(!premNb.includes(senderNumber)) return reply(premMsg)
         if (!q) return reply("*_Please give me a movie name._*")
 
     const search = await fetchJson(`${apilink}download/cinesubz-search?q=${q}`)

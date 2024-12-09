@@ -4,44 +4,6 @@ const { cmd, commands } = require('../command')
 
 const apilink = 'https://rest-api-dark-shan.vercel.app/'
 
-cmd({
-    pattern: "mvsearch2",
-    desc: "search movies",
-    filename: __filename
-},
-async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
-    try {
-
-const config = await readEnv();
-if(config.BLOCK_JID.includes(from)) return
-
-        if (!isOwner) {
-            return reply(
-                "*_This is an owner cmd_*"
-            )
-        }
-    
-
-const mv = await fetchJson(`${apilink}download/cinesubz-search?q=${q}`)
-
-let array = mv.data
-
-        if(array.length === 0) {
-return reply(`*_Can't find this movie !_*`)
-        }       
-
-let result = array.map((movie, index) => `${index + 1}. *Movie Name :* ${array[index].title}\n*Category :* ${array[index].category}\n*Year :* ${array[index].year}\n*Link :* ${array[index].link}`).join("\n\n");
-
-let dt = `*_INFINITY WA BOT MOVIE SEARCH 🔎_*\n\n`
-let cap = `\n\n> ɪɴꜰɪɴɪᴛʏ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ ᴄʀᴇᴀᴛᴇᴅ ʙʏ ꜱᴀᴅᴀʀᴜ`
-            
-await conn.sendMessage(from, { text: `${dt} ${result} ${cap}` }, {quoted: mek})
-
-}catch(e){
-console.log(e)
-reply(`${e}`)
-}
-})
 
 cmd({
     pattern: "infosend2",

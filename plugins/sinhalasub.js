@@ -144,7 +144,7 @@ let sendInfomsg = `🍟 *${info.result.data.title}*
 
 ⏱ *Duration :* ${info.result.data.runtime}
 
-🎀 *Categories :* ${info.result.data.categories}
+🎀 *Categories :* ${info.result.data.category}
 
 ⭐ *IMDB Rate :* ${info.result.data.imdbRate}
 

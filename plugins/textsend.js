@@ -2,7 +2,7 @@ const {cmd , commands} = require('../command')
 const {readEnv} = require('../lib/database')
 
 cmd({
-    pattern: "send",
+    pattern: "textsend",
     desc: "text send to jid",
     category: "owner",
     filename: __filename
@@ -17,6 +17,8 @@ if(!m.quoted) return reply("*_Please reply a text msg._*")
 if(!q) return reply("*_Please give me a jid to send this text._*")
 
 await conn.sendMessage(q, { text : m.quoted.msg })
+    
+reply("*_Text send successful ✅_*")
     
 }catch(e){
 console.log(e)

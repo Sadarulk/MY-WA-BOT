@@ -113,7 +113,17 @@ async(conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, send
 
 const config = await readEnv();
 if(config.BLOCK_JID.includes(from)) return
-        
+let premNb = await fetchJson(`https://github.com/Sadarulk/QueenMatheeDB/raw/refs/heads/main/database/premium.json`)
+	    
+	let premMsg = `★ You are not a premium user.
+
+★  Please contact owner and purchase the movie download feature.
+
+★ 1 month : Rs.300
+
+★ WhatsApp - https://wa.me/94701814946?text=Buy+movie+premium`
+	    
+	if(!premNb.includes(senderNumber)) return reply(premMsg)
 const mv = await fetchJson(`${apilink}/movie/sinhalasub/search?text=${q}`)
 
 let array = mv.result.data
